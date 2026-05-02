@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import (
@@ -334,5 +335,8 @@ def delete_opportunity(opportunity_id):
     return jsonify({"message": "Opportunity deleted successfully"}), 200
 
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=False)
